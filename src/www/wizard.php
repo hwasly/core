@@ -906,7 +906,7 @@ include("head.inc");
     $aliases = '';
     $addrisfirst = 0;
     $aliasesaddr = '';
-    foreach ((new \OPNsense\Firewall\Alias())->aliasIterator() as $alias_name) {
+    foreach ((new \HWasly\Firewall\Alias())->aliasIterator() as $alias_name) {
         if ($isfirst == 1) {
             $aliases .= ",";
         }

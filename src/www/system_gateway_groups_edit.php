@@ -31,7 +31,7 @@ require_once("guiconfig.inc");
 require_once("interfaces.inc");
 
 $a_gateway_groups = &config_read_array('gateways', 'gateway_group');
-$a_gateways = (new \OPNsense\Routing\Gateways(legacy_interfaces_details()))->gatewaysIndexedByName();
+$a_gateways = (new \HWasly\Routing\Gateways(legacy_interfaces_details()))->gatewaysIndexedByName();
 
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     if (isset($_GET['id']) && isset($a_gateway_groups[$_GET['id']])) {
@@ -166,7 +166,7 @@ $( document ).ready(function() {
           <div class="tab-content content-box col-xs-12">
             <div class="table-responsive">
               <form method="post" name="iform" id="iform">
-                <table class="table table-striped opnsense_standard_table_form">
+                <table class="table table-striped hwasly_standard_table_form">
                   <tr>
                     <td style="width:22%"></td>
                     <td style="width:78%; text-align:right">

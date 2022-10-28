@@ -32,7 +32,7 @@
 
 require_once("auth.inc");
 
-$acl = new OPNsense\Core\ACL();
+$acl = new HWasly\Core\ACL();
 $priv_list = $acl->getPrivList();
 
 function set_language()
@@ -53,7 +53,7 @@ function set_language()
     }
 
     $lang_encoding = $lang . '.UTF-8';
-    $textdomain = 'OPNsense';
+    $textdomain = 'HWasly';
 
     putenv('LANG=' . $lang_encoding);
     textdomain($textdomain);
@@ -168,7 +168,7 @@ function session_auth()
 
     /* Validate incoming login request */
     if (isset($_POST['login']) && !empty($_POST['usernamefld']) && !empty($_POST['passwordfld'])) {
-        $authFactory = new \OPNsense\Auth\AuthenticationFactory();
+        $authFactory = new \HWasly\Auth\AuthenticationFactory();
         $is_authenticated = $authFactory->authenticate("WebGui", $_POST['usernamefld'], $_POST['passwordfld']);
 
         if ($is_authenticated) {
@@ -199,7 +199,7 @@ function session_auth()
             } else {
                 if ($_SERVER['REQUEST_URI'] == "/") {
                     // default landing page
-                    $acl = new OPNsense\Core\ACL();
+                    $acl = new HWasly\Core\ACL();
                     $url = $acl->getLandingPage($_SESSION['Username']);
                     header(url_safe("Location: /{$url}"));
                 } else {
@@ -372,7 +372,7 @@ function display_login_form($Login_Error)
 
     <script src="/ui/js/jquery-3.5.1.min.js"></script>
 
-    <?php if (file_exists("/usr/local/opnsense/www/themes/{$themename}/build/js/theme.js")) : ?>
+    <?php if (file_exists("/usr/local/hwasly/www/themes/{$themename}/build/js/theme.js")) : ?>
     <script src="<?= cache_safe("/ui/themes/{$themename}/build/js/theme.js") ?>"></script>
     <?php endif ?>
 
@@ -383,7 +383,7 @@ function display_login_form($Login_Error)
     <main class="login-modal-container">
       <header class="login-modal-head" style="height:50px;">
         <div class="navbar-brand">
-    <?php if (file_exists("/usr/local/opnsense/www/themes/{$themename}/build/images/default-logo.svg")) : ?>
+    <?php if (file_exists("/usr/local/hwasly/www/themes/{$themename}/build/images/default-logo.svg")) : ?>
           <img src="<?= cache_safe("/ui/themes/{$themename}/build/images/default-logo.svg") ?>" height="30" alt="logo" />
     <?php else : ?>
           <img src="<?= cache_safe("/ui/themes/{$themename}/build/images/default-logo.png") ?>" height="30" alt="logo" />

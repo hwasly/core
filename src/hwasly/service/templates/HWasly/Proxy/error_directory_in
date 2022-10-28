@@ -1,0 +1,7 @@
+{#
+    base64 encoded zip archive containing template overrides
+#}
+{
+  "install": "{{ HWasly.proxy.general.error_pages|default('hwasly') }}",
+  "content": "{% if not helpers.empty('HWasly.proxy.error_pages.template') %}{{ HWasly.proxy.error_pages.template }}{% endif %}"
+}

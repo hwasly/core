@@ -234,17 +234,17 @@ include("head.inc");
     // watch scroll position and set to last known on page load
     watchScrollPosition();
 
-    // our usual zebra striping doesn't respect hidden rows, hook repaint on .opnsense-rules change() and fire initially
-    $(".opnsense-rules > tbody > tr").each(function(){
+    // our usual zebra striping doesn't respect hidden rows, hook repaint on .hwasly-rules change() and fire initially
+    $(".hwasly-rules > tbody > tr").each(function(){
         // save zebra color
         let tr_color = $(this).children(0).css("background-color");
         if (tr_color != 'transparent' && !tr_color.includes('(0, 0, 0')) {
             $("#fw_category").data('stripe_color', tr_color);
         }
     });
-    $(".opnsense-rules").removeClass("table-striped");
-    $(".opnsense-rules").change(function(){
-        $(".opnsense-rules > tbody > tr:visible").each(function (index) {
+    $(".hwasly-rules").removeClass("table-striped");
+    $(".hwasly-rules").change(function(){
+        $(".hwasly-rules > tbody > tr:visible").each(function (index) {
             $(this).css("background-color", "inherit");
             if ( index % 2 == 0) {
                 $(this).css("background-color", $("#fw_category").data('stripe_color'));
@@ -345,7 +345,7 @@ include("head.inc");
         <section class="col-xs-12">
           <div class="__mb"></div>
           <div class="table-responsive content-box">
-            <table class="table table-striped table-condensed opnsense-rules">
+            <table class="table table-striped table-condensed hwasly-rules">
               <thead>
                 <tr>
                   <th colspan="12">

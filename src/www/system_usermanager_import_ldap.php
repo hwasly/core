@@ -87,7 +87,7 @@ foreach ($servers as $server) {
 
 if ($authName !== null) {
     // connect to ldap server
-    $authenticator = (new OPNsense\Auth\AuthenticationFactory())->get($authName);
+    $authenticator = (new HWasly\Auth\AuthenticationFactory())->get($authName);
     // search ldap
     $ldap_is_connected = $authenticator->connect(
         $ldap_server['ldap_full_url'], $ldap_server['ldap_binddn'], $ldap_server['ldap_bindpw']

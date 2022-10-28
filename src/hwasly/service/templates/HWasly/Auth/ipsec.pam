@@ -1,0 +1,5 @@
+# auth
+auth		sufficient	pam_hwasly.so
+
+# account
+account		sufficient	pam_hwasly.so

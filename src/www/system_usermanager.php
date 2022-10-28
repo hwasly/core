@@ -201,7 +201,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         //
         // the client side is (jquery) generates the actual download file.
         $username = $a_user[$id]['name'];
-        $authFactory = new \OPNsense\Auth\AuthenticationFactory();
+        $authFactory = new \HWasly\Auth\AuthenticationFactory();
         $authenticator = $authFactory->get("Local API");
         $keyData = $authenticator->createKey($username);
         if ($keyData != null) {
@@ -211,7 +211,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     } elseif ($act =='delApiKey' && isset($id)) {
         $username = $a_user[$id]['name'];
         if (!empty($pconfig['api_delete'])) {
-            $authFactory = new \OPNsense\Auth\AuthenticationFactory();
+            $authFactory = new \HWasly\Auth\AuthenticationFactory();
             $authenticator = $authFactory->get("Local API");
             $authenticator->dropKey($username, $pconfig['api_delete']);
             $savemsg = sprintf(gettext('The API key "%s" was successfully removed.'), $pconfig['api_delete']);
@@ -484,7 +484,7 @@ $( document ).ready(function() {
     $("#import_ldap_users").click(function(event){
       event.preventDefault();
       const url="system_usermanager_import_ldap.php";
-      var oWin = window.open(url,"OPNsense","width=620,height=400,top=150,left=150,scrollbars=yes");
+      var oWin = window.open(url,"HWasly","width=620,height=400,top=150,left=150,scrollbars=yes");
       if (oWin == null || typeof(oWin) == "undefined") {
         alert("<?= html_safe(gettext('Popup blocker detected. Action aborted.')) ?>");
       }
@@ -575,7 +575,7 @@ $( document ).ready(function() {
                 <input type="hidden" id="priv_delete" name="priv_delete" value="" /> <!-- delete priv action -->
                 <input type="hidden" id="api_delete" name="api_delete" value="" /> <!-- delete api ke action -->
                 <input type="hidden" id="certid" name="certid" value="" /> <!-- remove cert association action -->
-                <table class="table table-striped opnsense_standard_table_form">
+                <table class="table table-striped hwasly_standard_table_form">
                   <tr>
                     <td style="width:22%"></td>
                     <td style="width:78%; text-align:right">

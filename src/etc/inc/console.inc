@@ -1,7 +1,7 @@
 <?php
 
 /*
- * Copyright (C) 2015-2022 Franco Fichtner <franco@opnsense.org>
+ * Copyright (C) 2015-2022 Franco Fichtner <franco@hwasly.org>
  * Copyright (C) 2004-2010 Scott Ullrich <sullrich@gmail.com>
  * Copyright (C) 2003-2004 Manuel Kasper <mk@neon1.net>
  * All rights reserved.

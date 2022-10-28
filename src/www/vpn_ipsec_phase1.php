@@ -64,7 +64,7 @@ function ipsec_ikeid_next() {
 
 function ipsec_keypairs()
 {
-    $mdl = new \OPNsense\IPsec\IPsec();
+    $mdl = new \HWasly\IPsec\IPsec();
     $node = $mdl->getNodeByReference('keyPairs.keyPair');
 
     return $node ? $node->getNodes() : [];
@@ -628,7 +628,7 @@ include("head.inc");
         <div class="tab-content content-box col-xs-12">
           <form method="post" name="iform" id="iform">
             <div class="table-responsive">
-              <table class="table table-striped opnsense_standard_table_form">
+              <table class="table table-striped hwasly_standard_table_form">
                 <tbody>
                   <tr>
                     <td style="width:22%"><b><?=gettext("General information"); ?></b></td>

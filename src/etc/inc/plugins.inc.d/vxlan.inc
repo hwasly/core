@@ -38,7 +38,7 @@ function vxlan_devices()
 {
     $names = [];
 
-    foreach (iterator_to_array((new \OPNsense\Interfaces\VxLan())->vxlan->iterateItems()) as $vxlan) {
+    foreach (iterator_to_array((new \HWasly\Interfaces\VxLan())->vxlan->iterateItems()) as $vxlan) {
         $names["vxlan{$vxlan->deviceId}"] = [
             'descr' => sprintf('vxlan%s %s (VNI %s)', $vxlan->deviceId, $vxlan->vxlanremote, $vxlan->vxlanid),
             'name' => "vxlan{$vxlan->deviceId}",
@@ -57,11 +57,11 @@ function vxlan_devices()
 
 function vxlan_configure_do($verbose = false, $device = null)
 {
-    $cnf = OPNsense\Core\Config::getInstance()->object();
+    $cnf = HWasly\Core\Config::getInstance()->object();
     $interfaces_details = legacy_interfaces_details();
     $configured_devices = array();
     $changed_devices = array();
-    $vxlans = iterator_to_array((new \OPNsense\Interfaces\VxLan())->vxlan->iterateItems());
+    $vxlans = iterator_to_array((new \HWasly\Interfaces\VxLan())->vxlan->iterateItems());
 
     if (!empty($vxlans)) {
         service_log(sprintf('Configuring VXLAN interface%s...', empty($device) ? 's' : " {$device}"), $verbose);

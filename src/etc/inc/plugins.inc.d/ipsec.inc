@@ -216,7 +216,7 @@ function ipsec_devices()
     return $devices;
 }
 
-function ipsec_firewall(\OPNsense\Firewall\Plugin $fw)
+function ipsec_firewall(\HWasly\Firewall\Plugin $fw)
 {
     global $config;
 
@@ -1078,7 +1078,7 @@ function ipsec_write_strongswan_conf()
     }
 
     $strongswan = generate_strongswan_conf($strongswanTree);
-    $strongswan .= "\ninclude strongswan.opnsense.d/*.conf\n";
+    $strongswan .= "\ninclude strongswan.hwasly.d/*.conf\n";
     @file_put_contents("/usr/local/etc/strongswan.conf", $strongswan);
 }
 
@@ -1151,7 +1151,7 @@ function ipsec_write_keypairs()
       'privateKey' => '/usr/local/etc/swanctl/private'
     ];
     $filenames = [];
-    foreach ((new \OPNsense\IPsec\IPsec())->keyPairs->keyPair->iterateItems() as $uuid => $keyPair) {
+    foreach ((new \HWasly\IPsec\IPsec())->keyPairs->keyPair->iterateItems() as $uuid => $keyPair) {
         foreach ($paths as $key => $path) {
             if (!empty((string)$keyPair->$key)) {
                 $filename = "${path}/{$uuid}.pem";
@@ -1197,7 +1197,7 @@ function ipsec_write_secrets()
         }
     }
 
-    foreach ((new \OPNsense\IPsec\IPsec())->preSharedKeys->preSharedKey->iterateItems() as $uuid => $psk) {
+    foreach ((new \HWasly\IPsec\IPsec())->preSharedKeys->preSharedKey->iterateItems() as $uuid => $psk) {
         $keytype = strtolower($psk->keyType);
         $secrets["{$keytype}-{$uuid}"] = [
             'id-0' => (string)$psk->ident,

@@ -86,7 +86,7 @@ function generate_new_duid($duid_type)
                 }
             }
             break;
-        case '4': //EN - Using Opnsense PEN!!!
+        case '4': //EN - Using Hwasly PEN!!!
             $type = "\x00\x02\x00\x00\xD2\x6D".random_bytes(8);
             for ($count = 0; $count < strlen($type); ) {
                 $new_duid .= bin2hex( $type[$count]);
@@ -273,7 +273,7 @@ include("head.inc");
     <section class="col-xs-12">
       <form method="post" name="iform" id="iform">
         <div class="content-box tab-content table-responsive __mb">
-          <table class="table table-striped opnsense_standard_table_form">
+          <table class="table table-striped hwasly_standard_table_form">
               <tr>
                 <td style="width:22%"><strong><?= gettext('Network Interfaces') ?></strong></td>
                 <td style="width:78%; text-align:right">
@@ -343,7 +343,7 @@ include("head.inc");
             </table>
           </div>
           <div class="content-box tab-content table-responsive __mb">
-            <table class="table table-striped opnsense_standard_table_form">
+            <table class="table table-striped hwasly_standard_table_form">
               <tr>
                 <td style="width:22%"><strong><?= gettext('IPv6 DHCP') ?></strong></td>
                 <td style="width:78%"></td>

@@ -70,12 +70,12 @@ function xmlrpc_exec($method, $params = [], $debug = false)
 
 function get_xmlrpc_backup_version()
 {
-    return xmlrpc_exec('opnsense.firmware_version');
+    return xmlrpc_exec('hwasly.firmware_version');
 }
 
 function get_xmlrpc_services()
 {
-    return xmlrpc_exec('opnsense.list_services');
+    return xmlrpc_exec('hwasly.list_services');
 }
 
 
@@ -83,19 +83,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (!empty($_POST["action"])) {
         switch ($_POST["action"]) {
             case 'stop':
-                $result=xmlrpc_exec('opnsense.stop_service', array("service" => $_POST['service'], "id" => $_POST['id']));
+                $result=xmlrpc_exec('hwasly.stop_service', array("service" => $_POST['service'], "id" => $_POST['id']));
                 echo json_encode(array("response" => $result));
                 break;
             case 'start':
-                $result=xmlrpc_exec('opnsense.start_service', array("service" => $_POST['service'], "id" => $_POST['id']));
+                $result=xmlrpc_exec('hwasly.start_service', array("service" => $_POST['service'], "id" => $_POST['id']));
                 echo json_encode(array("response" => $result));
                 break;
             case 'restart':
-                $result=xmlrpc_exec('opnsense.restart_service', array("service" => $_POST['service'], "id" => $_POST['id']));
+                $result=xmlrpc_exec('hwasly.restart_service', array("service" => $_POST['service'], "id" => $_POST['id']));
                 echo json_encode(array("response" => $result));
                 break;
             case 'reload_templates':
-                xmlrpc_exec('opnsense.configd_reload_all_templates');
+                xmlrpc_exec('hwasly.configd_reload_all_templates');
                 echo json_encode(array("status" => "done"));
                 break;
             case 'exec_sync':

@@ -33,8 +33,8 @@ function suricata_services()
     $services = array();
 
     if (
-        isset($config['OPNsense']['IDS']['general']['enabled']) &&
-        $config['OPNsense']['IDS']['general']['enabled'] == 1
+        isset($config['HWasly']['IDS']['general']['enabled']) &&
+        $config['HWasly']['IDS']['general']['enabled'] == 1
     ) {
         $services[] = array(
             'description' => gettext('Intrusion Detection'),
@@ -65,7 +65,7 @@ function suricata_xmlrpc_sync()
 
     $result[] = array(
         'description' => gettext('Intrusion Detection'),
-        'section' => 'OPNsense.IDS',
+        'section' => 'HWasly.IDS',
         'id' => 'suricata',
         'services' => ["suricata"],
     );

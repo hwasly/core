@@ -22,10 +22,10 @@ stop_postcmd=configd_poststop
 configd_load_rc_config()
 {
 	required_args=""
-	required_dirs="/usr/local/opnsense/service/"
+	required_dirs="/usr/local/hwasly/service/"
 	required_files=""
 	command_args="${required_args}"
-	command=/usr/local/opnsense/service/configd.py
+	command=/usr/local/hwasly/service/configd.py
 	command_interpreter=/usr/local/bin/python3
 }
 
@@ -33,7 +33,7 @@ configd_load_rc_config()
 configd_prestart()
 {
 	# reset access rights on configd daemon script
-	chmod 700 /usr/local/opnsense/service/configd.py
+	chmod 700 /usr/local/hwasly/service/configd.py
 }
 
 #

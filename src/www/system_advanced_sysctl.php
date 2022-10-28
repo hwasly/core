@@ -300,7 +300,7 @@ $( document ).ready(function() {
             </table>
 <?php else: ?>
             <form method="post">
-              <table class="table table-striped opnsense_standard_table_form">
+              <table class="table table-striped hwasly_standard_table_form">
                 <tr>
                   <td style="width:22%"><strong><?= gettext('Edit system tunable') ?></strong></td>
                   <td style="width:78%"></td>

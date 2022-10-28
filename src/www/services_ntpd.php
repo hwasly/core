@@ -232,7 +232,7 @@ include("head.inc");
         <div class="tab-content content-box col-xs-12">
           <form method="post" name="iform" id="iform" enctype="multipart/form-data" accept-charset="utf-8">
             <div class="table-responsive">
-              <table class="table table-striped opnsense_standard_table_form">
+              <table class="table table-striped hwasly_standard_table_form">
                 <thead>
                   <tr>
                     <td style="width:22%">

@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<ruleset documentation_url="https://github.com/hwasly/rules">
+    <location url="https://rulesets.hwasly.org/suricata/" prefix="HWasly-App-detect"/>
+    <files>
+        <file description="test">hwasly.test.rules</file>
+        <file description="file-transfer">hwasly.file_transfer.rules</file>
+        <file description="mail">hwasly.mail.rules</file>
+        <file description="media-streaming">hwasly.media_streaming.rules</file>
+        <file description="messaging">hwasly.messaging.rules</file>
+        <file description="social-networking">hwasly.social_media.rules</file>
+        <file description="uncategorized">hwasly.uncategorized.rules</file>
+    </files>
+</ruleset>

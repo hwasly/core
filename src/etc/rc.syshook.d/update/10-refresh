@@ -4,7 +4,7 @@
 /usr/local/etc/rc.configure_firmware
 
 # create a unique timestamp for our asset caching
-touch /usr/local/opnsense/www/index.php
+touch /usr/local/hwasly/www/index.php
 
 # remove spurious .pkgsave files pkg may have created
 for DIR in /boot /usr/libexec/bsdinstall /usr/local; do
@@ -12,4 +12,4 @@ for DIR in /boot /usr/libexec/bsdinstall /usr/local; do
 done
 
 # remove our stale pyc files not handled by pkg
-daemon -f find /usr/local/opnsense -type f -name "*.pyc" -delete
+daemon -f find /usr/local/hwasly -type f -name "*.pyc" -delete

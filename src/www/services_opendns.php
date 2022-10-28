@@ -1,7 +1,7 @@
 <?php
 
 /*
- * Copyright (c) 2015-2021 Franco Fichtner <franco@opnsense.org>
+ * Copyright (c) 2015-2021 Franco Fichtner <franco@hwasly.org>
  * Copyright (c) 2008 Tellnet AG
  * All rights reserved.
  *
@@ -125,7 +125,7 @@ include 'head.inc';
       <section class="col-xs-12">
         <div class="content-box table-responsive">
           <form method="post">
-            <table class="table table-striped opnsense_standard_table_form">
+            <table class="table table-striped hwasly_standard_table_form">
               <thead>
                 <tr>
                   <td style="width:22%"><strong><?=gettext('OpenDNS Setup'); ?></strong></td>

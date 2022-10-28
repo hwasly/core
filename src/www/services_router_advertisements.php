@@ -1,7 +1,7 @@
 <?php
 
 /*
- * Copyright (C) 2016-2022 Franco Fichtner <franco@opnsense.org>
+ * Copyright (C) 2016-2022 Franco Fichtner <franco@hwasly.org>
  * Copyright (C) 2014-2016 Deciso B.V.
  * Copyright (C) 2003-2004 Manuel Kasper <mk@neon1.net>
  * Copyright (C) 2010 Seth Mos <seth.mos@dds.nl>

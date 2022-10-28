@@ -1,6 +1,6 @@
 ---
 name: Feature request
-about: Suggest an idea for OPNsense
+about: Suggest an idea for HWasly
 title: ''
 labels: ''
 assignees: ''
@@ -9,8 +9,8 @@ assignees: ''
 
 Before you add a new report, we ask you kindly to acknowledge the following:
 
-- [ ] I have read the contributing guide lines at https://github.com/opnsense/core/blob/master/CONTRIBUTING.md
-- [ ] I am convinced that my issue is new after having checked both open and closed issues at https://github.com/opnsense/core/issues?q=is%3Aissue
+- [ ] I have read the contributing guide lines at https://github.com/hwasly/core/blob/master/CONTRIBUTING.md
+- [ ] I am convinced that my issue is new after having checked both open and closed issues at https://github.com/hwasly/core/issues?q=is%3Aissue
 
 **Is your feature request related to a problem? Please describe.**
 

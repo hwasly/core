@@ -2,7 +2,7 @@
 
 /*
  * Copyright (C) 2016 Deciso B.V.
- * Copyright (C) 2016-2018 Franco Fichtner <franco@opnsense.org>
+ * Copyright (C) 2016-2018 Franco Fichtner <franco@hwasly.org>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -78,7 +78,7 @@ function pf_cron()
 
     $jobs[]['autocron'] = array(
         '/usr/local/bin/flock -n -E 0 -o /tmp/filter_update_tables.lock ' .
-        '/usr/local/opnsense/scripts/filter/update_tables.py',
+        '/usr/local/hwasly/scripts/filter/update_tables.py',
         '*'
     );
 
@@ -206,18 +206,18 @@ function pf_xmlrpc_sync()
     );
     $result[] = array(
         'description' => gettext('Firewall Categories'),
-        'section' => 'OPNsense.Firewall.Category',
+        'section' => 'HWasly.Firewall.Category',
         'id' => 'categories',
     );
     $result[] = array(
         'description' => gettext('Firewall Log Templates'),
-        'section' => 'OPNsense.Firewall.Lvtemplate',
+        'section' => 'HWasly.Firewall.Lvtemplate',
         'id' => 'lvtemplate',
     );
     $result[] = array(
         'description' => gettext('Aliases'),
         'help' => gettext('Synchronize the aliases over to the other HA host.'),
-        'section' => 'OPNsense.Firewall.Alias',
+        'section' => 'HWasly.Firewall.Alias',
         'id' => 'aliases',
         'services' => ['pf'],
     );

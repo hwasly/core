@@ -210,7 +210,7 @@ function auth_get_shells($uid = 0)
     $shells = array('' => '/sbin/nologin');
 
     if ($uid == 0) {
-        $shells = array('' => '/usr/local/sbin/opnsense-shell');
+        $shells = array('' => '/usr/local/sbin/hwasly-shell');
     }
 
     $etc_shells = @file_get_contents('/etc/shells');
@@ -220,7 +220,7 @@ function auth_get_shells($uid = 0)
             $shell = trim($shell);
             if (
                 !empty($shell) && strpos($shell, '#') !== 0 &&
-                strpos($shell, '/usr/local/sbin/opnsense-') !== 0
+                strpos($shell, '/usr/local/sbin/hwasly-') !== 0
             ) {
                 $shells[$shell] = $shell;
             }
@@ -340,7 +340,7 @@ function local_user_set(&$user, $force_password = false, $userattrs = null)
     }
 
     if ($user_uid == 0) {
-        $user_shell = isset($user['shell']) ? $user['shell'] : '/usr/local/sbin/opnsense-shell';
+        $user_shell = isset($user['shell']) ? $user['shell'] : '/usr/local/sbin/hwasly-shell';
         $user_group = 'wheel';
         $user_home = '/root';
     } else {
@@ -643,6 +643,6 @@ function get_authenticator($authcfg = null)
         }
     }
 
-    $authFactory = new OPNsense\Auth\AuthenticationFactory();
+    $authFactory = new HWasly\Auth\AuthenticationFactory();
     return $authFactory->get($authName);
 }

@@ -54,7 +54,7 @@ function loopback_devices()
 {
     $names = [];
 
-    foreach (iterator_to_array((new \OPNsense\Interfaces\Loopback())->loopback->iterateItems()) as $loopback) {
+    foreach (iterator_to_array((new \HWasly\Interfaces\Loopback())->loopback->iterateItems()) as $loopback) {
         $names["lo{$loopback->deviceId}"] = [
             'descr' => sprintf('lo%s (%s)', $loopback->deviceId, $loopback->description),
             'ifdescr' => sprintf('%s', $loopback->description),
@@ -74,10 +74,10 @@ function loopback_devices()
 
 function loopback_configure_do($verbose = false, $device = null)
 {
-    $cnf = OPNsense\Core\Config::getInstance()->object();
+    $cnf = HWasly\Core\Config::getInstance()->object();
     $configured_interfaces = legacy_interface_listget();
     $configured_devices = ['lo0']; // lo0 should always be configured
-    $loopbacks = iterator_to_array((new \OPNsense\Interfaces\Loopback())->loopback->iterateItems());
+    $loopbacks = iterator_to_array((new \HWasly\Interfaces\Loopback())->loopback->iterateItems());
 
     if (!empty($loopbacks)) {
         service_log(sprintf('Configuring Loopback interface%s...', empty($device) ? 's' : " {$device}"), $verbose);

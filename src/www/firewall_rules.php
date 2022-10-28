@@ -543,17 +543,17 @@ $( document ).ready(function() {
       $("#internal-rule-count").text($("tr.internal-rule").length);
   }
 
-  // our usual zebra striping doesn't respect hidden rows, hook repaint on .opnsense-rules change() and fire initially
-  $(".opnsense-rules > tbody > tr").each(function(){
+  // our usual zebra striping doesn't respect hidden rows, hook repaint on .hwasly-rules change() and fire initially
+  $(".hwasly-rules > tbody > tr").each(function(){
       // save zebra color
       let tr_color = $(this).children(0).css("background-color");
       if (tr_color != 'transparent' && !tr_color.includes('(0, 0, 0')) {
           $("#fw_category").data('stripe_color', tr_color);
       }
   });
-  $(".opnsense-rules").removeClass("table-striped");
-  $(".opnsense-rules").change(function(){
-      $(".opnsense-rules > tbody > tr:visible").each(function (index) {
+  $(".hwasly-rules").removeClass("table-striped");
+  $(".hwasly-rules").change(function(){
+      $(".hwasly-rules > tbody > tr:visible").each(function (index) {
           $(this).css("background-color", "inherit");
           if ( index % 2 == 0) {
               $(this).css("background-color", $("#fw_category").data('stripe_color'));
@@ -564,7 +564,7 @@ $( document ).ready(function() {
   $("#expand-internal").click(function(event){
       event.preventDefault();
       $(".internal-rule").toggle();
-      $(".opnsense-rules").change();
+      $(".hwasly-rules").change();
   });
 });
 </script>
@@ -575,7 +575,7 @@ $( document ).ready(function() {
     .button-th {
         width: 150px;
     }
-    .opnsense-rules > tbody > tr > td {
+    .hwasly-rules > tbody > tr > td {
         padding-left:15px;
         padding-right:15px;
     }
@@ -637,7 +637,7 @@ $( document ).ready(function() {
               <input type="hidden" id="id" name="id" value="" />
               <input type="hidden" id="action" name="act" value="" />
               <div class="table-responsive">
-                <table class="table table-condensed table-striped opnsense-rules">
+                <table class="table table-condensed table-striped hwasly-rules">
                   <tbody>
                     <tr>
                       <td><input type="checkbox" id="selectAll"></td>
@@ -756,7 +756,7 @@ $( document ).ready(function() {
                 ):
                   // calculate a hash so we can track these records in the ruleset, new style (mvc) code will
                   // automatically provide us with a uuid, this is a workaround to provide some help with tracking issues.
-                  $rule_hash = OPNsense\Firewall\Util::calcRuleHash($a_filter_raw[$i]);
+                  $rule_hash = HWasly\Firewall\Util::calcRuleHash($a_filter_raw[$i]);
 ?>
                   <tr class="rule  <?=isset($filterent['disabled'])?"text-muted":"";?>" data-category="<?=!empty($filterent['category']) ? $filterent['category'] : "";?>">
                     <td>
@@ -913,7 +913,7 @@ $( document ).ready(function() {
 ?>
                 </tbody>
               </table>
-              <table class="table table-condensed table-striped opnsense-rules">
+              <table class="table table-condensed table-striped hwasly-rules">
                 <tbody>
                   <tr class="hidden-xs hidden-sm">
                     <td>

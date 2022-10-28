@@ -31,7 +31,7 @@ require_once("guiconfig.inc");
 require_once("interfaces.inc");
 require_once("plugins.inc.d/dpinger.inc");
 
-$gateways = new \OPNsense\Routing\Gateways(legacy_interfaces_details());
+$gateways = new \HWasly\Routing\Gateways(legacy_interfaces_details());
 $a_gateways = array_values($gateways->gatewaysIndexedByName(true, false, true));
 $dpinger_default = dpinger_defaults();
 
@@ -472,7 +472,7 @@ $( document ).ready(function() {
               <input type='hidden' name='attribute' id='attribute' value="<?=$pconfig['attribute'];?>"/>
 <?php
             endif;?>
-              <table class="table table-striped opnsense_standard_table_form">
+              <table class="table table-striped hwasly_standard_table_form">
                 <tr>
                   <td style="width:22%"><?=gettext("Edit gateway");?></td>
                   <td style="width:78%; text-align:right">

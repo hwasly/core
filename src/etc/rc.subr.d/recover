@@ -2,7 +2,7 @@
 <?php
 
 /*
- * Copyright (c) 2015-2022 Franco Fichtner <franco@opnsense.org>
+ * Copyright (c) 2015-2022 Franco Fichtner <franco@hwasly.org>
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -122,8 +122,8 @@ $known_shells = array(
     '/usr/local/bin/bash',
     '/usr/local/bin/scponly',
     '/usr/local/bin/zsh',
-    '/usr/local/sbin/opnsense-installer',
-    '/usr/local/sbin/opnsense-shell',
+    '/usr/local/sbin/hwasly-installer',
+    '/usr/local/sbin/hwasly-shell',
 );
 
 foreach ($known_shells as $shell) {
@@ -205,7 +205,7 @@ post_max_size = 200M
 html_errors = Off
 zlib.output_compression = Off
 zlib.output_compression_level = 1
-include_path = "/usr/local/etc/inc:/usr/local/www:/usr/local/opnsense/mvc:/usr/local/opnsense/contrib:/usr/local/share/pear:/usr/local/share"
+include_path = "/usr/local/etc/inc:/usr/local/www:/usr/local/hwasly/mvc:/usr/local/hwasly/contrib:/usr/local/share/pear:/usr/local/share"
 ignore_repeated_errors = on
 error_reporting = E_ALL ^ (E_WARNING | E_NOTICE | E_DEPRECATED | E_STRICT | E_CORE_WARNING | E_COMPILE_WARNING)
 display_errors=on

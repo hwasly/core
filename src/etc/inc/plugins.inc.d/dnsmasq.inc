@@ -1,7 +1,7 @@
 <?php
 
 /*
- * Copyright (C) 2014-2022 Franco Fichtner <franco@opnsense.org>
+ * Copyright (C) 2014-2022 Franco Fichtner <franco@hwasly.org>
  * Copyright (C) 2010 Ermal Luçi
  * Copyright (C) 2005-2006 Colin Smith <ethethlay@gmail.com>
  * Copyright (C) 2003-2004 Manuel Kasper <mk@neon1.net>
@@ -278,7 +278,7 @@ function _dnsmasq_dhcpleases_start()
         if (isset($config['dnsmasq']['regdhcpdomain'])) {
             $domain = $config['dnsmasq']['regdhcpdomain'];
         }
-        mwexecf('/usr/local/opnsense/scripts/dhcp/dnsmasq_watcher.py --domain %s', $domain);
+        mwexecf('/usr/local/hwasly/scripts/dhcp/dnsmasq_watcher.py --domain %s', $domain);
     }
 }
 

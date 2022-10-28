@@ -2,7 +2,7 @@
 
 /*
  * Copyright (C) 2018 Fabian Franz
- * Copyright (C) 2015-2021 Franco Fichtner <franco@opnsense.org>
+ * Copyright (C) 2015-2021 Franco Fichtner <franco@hwasly.org>
  * Copyright (C) 2015 Manuel Faux <mfaux@conf.at>
  * Copyright (C) 2014 Warren Baker <warren@decoy.co.za>
  * Copyright (C) 2004-2007 Scott Ullrich <sullrich@gmail.com>
@@ -75,7 +75,7 @@ function unbound_xmlrpc_sync()
 
     $result[] = array(
         'description' => gettext('Unbound DNS'),
-        'section' => 'unbound,OPNsense.unboundplus',
+        'section' => 'unbound,HWasly.unboundplus',
         'id' => 'dnsresolver',
         'services' => ["unbound"],
     );
@@ -161,7 +161,7 @@ function unbound_generate_config()
 
     $private_addr = "";
     if (!isset($config['system']['webgui']['nodnsrebindcheck'])) {
-        $advanced = config_read_array('OPNsense', 'unboundplus', 'advanced');
+        $advanced = config_read_array('HWasly', 'unboundplus', 'advanced');
         if (!empty($advanced) && !empty($advanced['privateaddress'])) {
             foreach (explode(',', $advanced['privateaddress']) as $address) {
                 $private_addr .= "private-address: {$address}\n";
@@ -229,7 +229,7 @@ function unbound_generate_config()
         $include_dhcpleases = '';
     }
 
-    $unbound_mdl = new \OPNsense\Unbound\Unbound();
+    $unbound_mdl = new \HWasly\Unbound\Unbound();
     $unbound_enabled = (string)$unbound_mdl->forwarding->enabled;
 
     $forward_conf = '';
@@ -337,7 +337,7 @@ remote-control:
 EOD;
 
     file_put_contents('/var/unbound/unbound.conf', $unboundconf);
-    configd_run('template reload OPNsense/Unbound/*');
+    configd_run('template reload HWasly/Unbound/*');
 }
 
 function unbound_cache_flush()
@@ -368,7 +368,7 @@ function unbound_configure_do($verbose = false, $unused = '')
         }
     }
 
-    mwexecf_bg('/usr/local/bin/flock -n -E 0 -o /tmp/unbound_start.lock /usr/local/opnsense/scripts/unbound/start.sh %s', [$domain]);
+    mwexecf_bg('/usr/local/bin/flock -n -E 0 -o /tmp/unbound_start.lock /usr/local/hwasly/scripts/unbound/start.sh %s', [$domain]);
 
     service_log("done.\n", $verbose);
 }
@@ -468,7 +468,7 @@ function unbound_add_host_entries($ifconfig_details = null)
         unset($tmp_known_domains); // remove temporary variable
     }
 
-    $unbound_mdl = new \OPNsense\Unbound\Unbound();
+    $unbound_mdl = new \HWasly\Unbound\Unbound();
     $hosts = iterator_to_array($unbound_mdl->hosts->host->iterateItems());
     $aliases = iterator_to_array($unbound_mdl->aliases->alias->iterateItems());
 

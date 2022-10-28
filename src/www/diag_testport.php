@@ -1,7 +1,7 @@
 <?php
 
 /*
- * Copyright (C) 2018 Franco Fichtner <franco@opnsense.org>
+ * Copyright (C) 2018 Franco Fichtner <franco@hwasly.org>
  * Copyright (C) 2016 Deciso B.V.
  * Copyright (C) 2013 Jim Pingle <jimp@pfsense.org>
  * Copyright (C) 2003-2005 Bob Zoller <bob@kludgebox.com>
@@ -119,7 +119,7 @@ include("head.inc"); ?>
             <?php if (isset($input_errors) && count($input_errors) > 0) print_input_errors($input_errors); ?>
             <form method="post" name="iform" id="iform">
               <div class="table-responsive">
-                <table class="table table-striped opnsense_standard_table_form">
+                <table class="table table-striped hwasly_standard_table_form">
                     <tr>
                       <td style="width:22%"><strong><?= gettext('Port Probe') ?></strong></td>
                       <td style="width:78%; text-align:right">

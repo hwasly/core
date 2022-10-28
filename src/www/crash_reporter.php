@@ -1,7 +1,7 @@
 <?php
 
 /*
- * Copyright (C) 2015-2018 Franco Fichtner <franco@opnsense.org>
+ * Copyright (C) 2015-2018 Franco Fichtner <franco@hwasly.org>
  * Copyright (C) 2014 Deciso B.V.
  * Copyright (C) 2011 Scott Ullrich <sullrich@gmail.com>
  * All rights reserved.
@@ -45,7 +45,7 @@ function upload_crash_report($files, $agent)
     }
 
     $ch = curl_init();
-    curl_setopt($ch, CURLOPT_URL, 'https://crash.opnsense.org/');
+    curl_setopt($ch, CURLOPT_URL, 'https://crash.hwasly.org/');
     curl_setopt($ch, CURLOPT_HEADER, false);
     curl_setopt($ch, CURLOPT_VERBOSE, false);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);

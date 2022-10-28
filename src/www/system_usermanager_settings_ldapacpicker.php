@@ -44,7 +44,7 @@ if (isset($_POST['basedn']) && isset($_POST['host'])) {
         $ldap_full_url .= ":{$_POST['port']}";
     }
 
-    $ldap_auth = new OPNsense\Auth\LDAP($_POST['basedn'], isset($_POST['proto']) ? $_POST['proto'] : 3);
+    $ldap_auth = new HWasly\Auth\LDAP($_POST['basedn'], isset($_POST['proto']) ? $_POST['proto'] : 3);
     $ldap_auth->setProperties(['ldap_urltype' => $_POST['urltype']]);
     $ldap_is_connected = $ldap_auth->connect(
         $ldap_full_url,

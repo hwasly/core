@@ -1,7 +1,7 @@
 <?php
 
 /*
- * Copyright (C) 2015-2018 Franco Fichtner <franco@opnsense.org>
+ * Copyright (C) 2015-2018 Franco Fichtner <franco@hwasly.org>
  * Copyright (C) 2014 Deciso B.V.
  * Copyright (C) 2004-2009 Scott Ullrich <sullrich@gmail.com>
  * Copyright (C) 2008 Shrew Soft Inc. <mgrooms@shrew.net>
@@ -36,7 +36,7 @@ require_once("filter.inc");
 require_once("rrd.inc");
 require_once("system.inc");
 
-use OPNsense\Backup\Local;
+use HWasly\Backup\Local;
 
 /**
  * restore config section
@@ -67,7 +67,7 @@ function restore_config_section($section_name, $new_contents)
 }
 
 $areas = array(
-    'OPNsense' => gettext('OPNsense Additions'),	/* XXX need specifics */
+    'HWasly' => gettext('HWasly Additions'),	/* XXX need specifics */
     'bridges' => gettext('Bridge Devices'),
     'ca' => gettext('SSL Certificate Authorities'),
     'cert' => gettext('SSL Certificates'),
@@ -105,7 +105,7 @@ $areas = array(
     'wol' => gettext('Wake on LAN'),
 );
 
-$backupFactory = new OPNsense\Backup\BackupFactory();
+$backupFactory = new HWasly\Backup\BackupFactory();
 $do_reboot = false;
 
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
@@ -153,7 +153,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             /* backup RRD data */
             if (empty($_POST['donotbackuprrd'])) {
                 $rrd_data_xml = rrd_export();
-                $closing_tag = "</opnsense>";
+                $closing_tag = "</hwasly>";
                 $data = str_replace($closing_tag, $rrd_data_xml . $closing_tag, $data);
             }
 
@@ -227,7 +227,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
                 /* restore the entire configuration */
                 $filename = $_FILES['conffile']['tmp_name'];
                 file_put_contents($filename, $data);
-                $cnf = OPNsense\Core\Config::getInstance();
+                $cnf = HWasly\Core\Config::getInstance();
                 if ($cnf->restoreBackup($filename)) {
                     if (!empty($pconfig['rebootafterrestore'])) {
                         $do_reboot = true;
@@ -427,7 +427,7 @@ $( document ).ready(function() {
 <?php
           foreach ($backupFactory->listProviders() as $providerId => $provider):?>
           <div class="content-box tab-content table-responsive __mb">
-            <table class="table table-striped opnsense_standard_table_form">
+            <table class="table table-striped hwasly_standard_table_form">
                     <tr>
                         <td colspan="2"><strong><?= $provider['handle']->getName() ?></strong></td>
                     </tr>

@@ -41,7 +41,7 @@ stop_cmd="${name}_stop"
 captiveportal_load_rc_config()
 {
     CPWORKDIR="/var/captiveportal"
-    CPDEFAULTTEMPLATE="/usr/local/opnsense/scripts/OPNsense/CaptivePortal/htdocs_default"
+    CPDEFAULTTEMPLATE="/usr/local/hwasly/scripts/HWasly/CaptivePortal/htdocs_default"
 
     # extract all zones from captive portal configuration
     CPZONES=`cat /usr/local/etc/captiveportal.conf | grep "\[zone_" | sed 's/\[zone_//' | sed 's/\]//'`
@@ -81,7 +81,7 @@ captiveportal_start()
         /usr/local/sbin/lighttpd -f /var/etc/lighttpd-api-dispatcher.conf
 
         # generate ssl certificates
-        /usr/local/opnsense/scripts/OPNsense/CaptivePortal/generate_certs.php
+        /usr/local/hwasly/scripts/HWasly/CaptivePortal/generate_certs.php
 
         # startup / bootstrap zones
         for zoneid in $CPZONES; do
@@ -106,7 +106,7 @@ captiveportal_start()
             chown -R www:www $CPWORKDIR/$zonedirname
 
             # overlay custom user layout if available.
-            /usr/local/opnsense/scripts/OPNsense/CaptivePortal/overlay_template.py $zoneid
+            /usr/local/hwasly/scripts/HWasly/CaptivePortal/overlay_template.py $zoneid
 
             # start new instance
             echo "Start : zone $zoneid"
@@ -115,7 +115,7 @@ captiveportal_start()
 
         captiveportal_cleanup_zones
         echo "start captiveportal background process"
-        /usr/local/opnsense/scripts/OPNsense/CaptivePortal/cp-background-process.py start
+        /usr/local/hwasly/scripts/HWasly/CaptivePortal/cp-background-process.py start
     else
         echo "already running"
     fi
@@ -124,7 +124,7 @@ captiveportal_start()
 # stop captive portal (sub) processes
 captiveportal_stop()
 {
-    # startup API dispatcher, forwards captive portal api request to shared OPNsense API
+    # startup API dispatcher, forwards captive portal api request to shared HWasly API
     if [ -f /var/run/lighttpd-api-dispatcher.pid ]; then
         echo "Stopping API dispatcher"
         /bin/pkill -TERM -F /var/run/lighttpd-api-dispatcher.pid

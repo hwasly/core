@@ -232,7 +232,7 @@ $( document ).ready(function() {
           <section class="col-xs-12">
             <div class="content-box">
               <div class="table-responsive" >
-                <table class="table table-striped table-hover opnsense_standard_table_form">
+                <table class="table table-striped table-hover hwasly_standard_table_form">
                   <thead>
                     <tr>
                       <td style="width:22%"><strong><?=gettext("General settings");?></strong></td>

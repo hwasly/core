@@ -1,0 +1,5 @@
+{% if helpers.exists('HWasly.proxy.forward.sslnobumpsites') and HWasly.proxy.forward.sslnobumpsites != '' %}
+{% for line in HWasly.proxy.forward.sslnobumpsites.split(',') %}
+{{ line }}
+{% endfor %}
+{% endif %}

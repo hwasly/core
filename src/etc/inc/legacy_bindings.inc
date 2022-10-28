@@ -37,7 +37,7 @@ require_once('script/load_phalcon.php');
  */
 function configd_run($cmd, $detach = false)
 {
-    $backend = new OPNsense\Core\Backend();
+    $backend = new HWasly\Core\Backend();
     return $backend->configdRun($cmd, $detach);
 }
 
@@ -51,7 +51,7 @@ function configd_run($cmd, $detach = false)
  */
 function configdp_run($cmd, $params = array(), $detach = false)
 {
-    $backend = new OPNsense\Core\Backend();
+    $backend = new HWasly\Core\Backend();
     return $backend->configdpRun($cmd, $params, $detach);
 }
 
@@ -60,7 +60,7 @@ function configdp_run($cmd, $params = array(), $detach = false)
  * Some patterns are very common in the old code, this section contains functions to help
  * cleanup the old code by performing less repetition.
  *
- * Never use these functions in new style OPNsense software, their only purpose is to help
+ * Never use these functions in new style HWasly software, their only purpose is to help
  * migrating to something new.
  *
  ************************************************************************************************/
@@ -90,7 +90,7 @@ function legacy_list_aliases($type)
 {
     $result = [];
 
-    foreach ((new \OPNsense\Firewall\Alias())->aliasIterator() as $alias) {
+    foreach ((new \HWasly\Firewall\Alias())->aliasIterator() as $alias) {
         if ($alias['type'] == 'internal') {
             // XXX: skip internal aliases while still defined as "networks" in the rules pages
             continue;
@@ -161,7 +161,7 @@ function legacy_move_config_list_items($source, $id, $items)
  */
 function get_alias_description($name)
 {
-    return OPNsense\Firewall\Util::aliasDescription($name);
+    return HWasly\Firewall\Util::aliasDescription($name);
 }
 
 function return_gateways_status()
@@ -193,6 +193,6 @@ function return_down_gateways()
  */
 function return_gateway_groups_array()
 {
-    $gateways = new \OPNsense\Routing\Gateways(legacy_interfaces_details());
+    $gateways = new \HWasly\Routing\Gateways(legacy_interfaces_details());
     return $gateways->getGroups(return_gateways_status());
 }

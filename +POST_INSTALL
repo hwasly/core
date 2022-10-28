@@ -1,21 +1,21 @@
 echo "Updating /etc/shells"
 cp /etc/shells /etc/shells.bak
-(grep -v /usr/local/sbin/opnsense-shell /etc/shells.bak; \
-    echo /usr/local/sbin/opnsense-shell) > /etc/shells
+(grep -v /usr/local/sbin/hwasly-shell /etc/shells.bak; \
+    echo /usr/local/sbin/hwasly-shell) > /etc/shells
 rm -f /etc/shells.bak
 cp /etc/shells /etc/shells.bak
-(grep -v /usr/local/sbin/opnsense-installer /etc/shells.bak; \
-    echo /usr/local/sbin/opnsense-installer) > /etc/shells
+(grep -v /usr/local/sbin/hwasly-installer /etc/shells.bak; \
+    echo /usr/local/sbin/hwasly-installer) > /etc/shells
 rm -f /etc/shells.bak
 
 echo "Registering root shell"
-pw usermod -n root -s /usr/local/sbin/opnsense-shell
+pw usermod -n root -s /usr/local/sbin/hwasly-shell
 
 echo "Hooking into /etc/rc"
 cp /etc/rc /etc/rc.bak
 cat > /etc/rc <<EOF
 #!/bin/sh
-# OPNsense rc(8) hook was automatically installed:
+# HWasly rc(8) hook was automatically installed:
 if [ -f /usr/local/etc/rc ]; then exec /usr/local/etc/rc; fi
 EOF
 cat /etc/rc.bak >> /etc/rc
@@ -25,7 +25,7 @@ echo "Hooking into /etc/rc.shutdown"
 cp /etc/rc.shutdown /etc/rc.shutdown.bak
 cat > /etc/rc.shutdown <<EOF
 #!/bin/sh
-# OPNsense rc(8) hook was automatically installed:
+# HWasly rc(8) hook was automatically installed:
 if [ -f /usr/local/etc/rc.shutdown ]; then exec /usr/local/etc/rc.shutdown; fi
 EOF
 cat /etc/rc.shutdown.bak >> /etc/rc.shutdown

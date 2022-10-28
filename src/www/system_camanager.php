@@ -88,7 +88,7 @@ function ca_inter_create(&$ca, $keylen_curve, $lifetime, $dn, $caref, $digest_al
     $signing_ca_serial = ++$signing_ca['serial'];
 
     $args = array(
-        'config' => '/usr/local/etc/ssl/opnsense.cnf',
+        'config' => '/usr/local/etc/ssl/hwasly.cnf',
         'x509_extensions' => 'v3_ca',
         'digest_alg' => $digest_alg,
         'encrypt_key' => false
@@ -515,7 +515,7 @@ include("head.inc");
         <form method="post" name="iform" id="iform">
           <input type="hidden" name="id" id="id" value="<?=isset($id) ? $id :"";?>"/>
           <input type="hidden" name="act" id="action" value="<?=$act;?>"/>
-          <table class="table table-striped opnsense_standard_table_form">
+          <table class="table table-striped hwasly_standard_table_form">
             <tr>
               <td style="width:22%"></td>
               <td style="width:78%; text-align:right">
@@ -547,7 +547,7 @@ include("head.inc");
             </tr>
           </table>
           <!-- existing ca -->
-          <table id="existing" class="table table-striped opnsense_standard_table_form">
+          <table id="existing" class="table table-striped hwasly_standard_table_form">
             <thead>
               <tr>
                 <th colspan="2"><?=gettext("Existing Certificate Authority");?></th>
@@ -587,7 +587,7 @@ include("head.inc");
               </tbody>
             </table>
             <!-- internal ca -->
-            <table  id="internal" class="table table-striped opnsense_standard_table_form">
+            <table  id="internal" class="table table-striped hwasly_standard_table_form">
               <thead>
                 <tr>
                   <th colspan="2"><?=gettext("Internal Certificate Authority");?></th>
@@ -743,7 +743,7 @@ include("head.inc");
               </tbody>
             </table>
 
-            <table class="table opnsense_standard_table_form">
+            <table class="table hwasly_standard_table_form">
             <tr>
               <td style="width:22%">&nbsp;</td>
               <td style="width:78%">

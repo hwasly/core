@@ -134,7 +134,7 @@ include("head.inc");
 <script src="<?= cache_safe('/ui/js/tokenize2.js') ?>"></script>
 <link rel="stylesheet" type="text/css" href="<?= cache_safe(get_themed_filename('/css/tokenize2.css')) ?>">
 
-<script src="<?= cache_safe('/ui/js/opnsense_ui.js') ?>"></script>
+<script src="<?= cache_safe('/ui/js/hwasly_ui.js') ?>"></script>
 
  <script>
     $( document ).ready(function() {
@@ -161,7 +161,7 @@ if (isset($input_errors) && count($input_errors) > 0) {
           <div class="tab-content content-box col-xs-12">
               <form method="post" name="iform" id="iform">
                 <div class="table-responsive">
-                  <table class="table table-striped opnsense_standard_table_form">
+                  <table class="table table-striped hwasly_standard_table_form">
                     <tr>
                       <td><strong><?=gettext("IPsec Advanced Settings"); ?></strong></td>
                       <td style="text-align:right">

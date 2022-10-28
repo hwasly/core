@@ -3,7 +3,7 @@
 /*
  * Copyright (C) 2020 Deciso B.V.
  * Copyright (C) 2018 Martin Wasley <martin@team-rebellion.net>
- * Copyright (C) 2016-2022 Franco Fichtner <franco@opnsense.org>
+ * Copyright (C) 2016-2022 Franco Fichtner <franco@hwasly.org>
  * Copyright (C) 2008 Bill Marquette <bill.marquette@gmail.com>
  * Copyright (C) 2008 Seth Mos <seth.mos@dds.nl>
  * Copyright (C) 2010 Ermal Luçi
@@ -110,7 +110,7 @@ function dpinger_configure_do($verbose = false, $gwname = null, $bootup = false)
     }
 
     $ifconfig_details = legacy_interfaces_details();
-    $gateways = new \OPNsense\Routing\Gateways($ifconfig_details);
+    $gateways = new \HWasly\Routing\Gateways($ifconfig_details);
     $monitor_ips = [];
 
     $dpinger_default = dpinger_defaults();

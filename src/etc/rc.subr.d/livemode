@@ -2,7 +2,7 @@
 <?php
 
 /*
- * Copyright (c) 2016-2017 Franco Fichtner <franco@opnsense.org>
+ * Copyright (c) 2016-2017 Franco Fichtner <franco@hwasly.org>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -52,13 +52,13 @@ if (is_install_media()) {
     }
 
     if ($root) {
-        $root['shell'] = '/usr/local/sbin/opnsense-installer';
+        $root['shell'] = '/usr/local/sbin/hwasly-installer';
         $root['name'] = 'installer';
         local_user_set($root, true);
 
         echo "\n";
 
-        /* tailored for OPNsense to occupy same width below */
+        /* tailored for HWasly to occupy same width below */
         $namex = product::getInstance()->name();
 
         $greeting = "Welcome!  {$namex} is running in live mode from install media.  Please\n" .

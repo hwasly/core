@@ -2,7 +2,7 @@
 <?php
 
 /*
- * Copyright (C) 2017-2018 Franco Fichtner <franco@opnsense.org>
+ * Copyright (C) 2017-2018 Franco Fichtner <franco@hwasly.org>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -46,5 +46,5 @@ if ($script == 'POST_INSTALL') {
 }
 
 /* flush user-facing caches */
-(new OPNsense\Core\ACL())->invalidateCache();
-(new OPNsense\Base\Menu\MenuSystem())->invalidateCache();
+(new HWasly\Core\ACL())->invalidateCache();
+(new HWasly\Base\Menu\MenuSystem())->invalidateCache();

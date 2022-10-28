@@ -93,8 +93,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         if (isset($_GET['https'])){
             $pconfig['dstbeginport'] = 443;
             $pconfig['dstendport'] = 443;
-            if (isset($config['OPNsense']['proxy']['forward']['sslbumpport'])) {
-                $pconfig['local-port'] = $config['OPNsense']['proxy']['forward']['sslbumpport'];
+            if (isset($config['HWasly']['proxy']['forward']['sslbumpport'])) {
+                $pconfig['local-port'] = $config['HWasly']['proxy']['forward']['sslbumpport'];
             } else {
                 $pconfig['local-port'] = 3129;
             }
@@ -104,8 +104,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             // try to read the proxy configuration to determine the current port
             // this has some disadvantages in case of dependencies, but there isn't
             // a much better solution available at the moment.
-            if (isset($config['OPNsense']['proxy']['forward']['port'])) {
-                $pconfig['local-port'] = $config['OPNsense']['proxy']['forward']['port'];
+            if (isset($config['HWasly']['proxy']['forward']['port'])) {
+                $pconfig['local-port'] = $config['HWasly']['proxy']['forward']['port'];
             } else {
                 $pconfig['local-port'] = 3128;
             }
@@ -366,11 +366,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             }
         }
 
-        OPNsense\Core\Config::getInstance()->fromArray($config);
-        $catmdl = new OPNsense\Firewall\Category();
+        HWasly\Core\Config::getInstance()->fromArray($config);
+        $catmdl = new HWasly\Firewall\Category();
         if ($catmdl->sync()) {
             $catmdl->serializeToConfig();
-            $config = OPNsense\Core\Config::getInstance()->toArray(listtags());
+            $config = HWasly\Core\Config::getInstance()->toArray(listtags());
         }
         write_config();
         mark_subsystem_dirty('natconf');
@@ -388,7 +388,7 @@ include("head.inc");
 <body>
 <script src="<?= cache_safe('/ui/js/tokenize2.js') ?>"></script>
 <link rel="stylesheet" type="text/css" href="<?= cache_safe(get_themed_filename('/css/tokenize2.css')) ?>">
-<script src="<?= cache_safe('/ui/js/opnsense_ui.js') ?>"></script>
+<script src="<?= cache_safe('/ui/js/hwasly_ui.js') ?>"></script>
 <script>
 $( document ).ready(function() {
     // show source fields (advanced)
@@ -525,7 +525,7 @@ $( document ).ready(function() {
         <section class="col-xs-12">
           <div class="content-box">
             <form method="post" name="iform" id="iform">
-              <table class="table table-striped opnsense_standard_table_form">
+              <table class="table table-striped hwasly_standard_table_form">
                 <tr>
                   <td style="width:22%"><?=gettext("Edit Redirect entry"); ?></td>
                   <td  style="width:78%; text-align:right">
@@ -994,7 +994,7 @@ $( document ).ready(function() {
                   <td>
                     <select name="category[]" id="category" multiple="multiple" class="tokenize" data-allownew="true" data-width="334px" data-live-search="true">
 <?php
-                    foreach ((new OPNsense\Firewall\Category())->iterateCategories() as $category):
+                    foreach ((new HWasly\Firewall\Category())->iterateCategories() as $category):
                       $catname = htmlspecialchars($category['name'], ENT_QUOTES | ENT_HTML401);?>
                       <option value="<?=$catname;?>" <?=!empty($pconfig['category']) && in_array($catname, $pconfig['category']) ? 'selected="selected"' : '';?> ><?=$catname;?></option>
 <?php

@@ -1,0 +1,5 @@
+{% if helpers.exists('HWasly.proxy.general.cache.local') %}
+{%   if HWasly.proxy.general.cache.local.enabled == '1' %}
+yes
+{%   endif %}
+{% endif %}

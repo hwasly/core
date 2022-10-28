@@ -154,11 +154,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             $a_1to1[] = $natent;
         }
 
-        OPNsense\Core\Config::getInstance()->fromArray($config);
-        $catmdl = new OPNsense\Firewall\Category();
+        HWasly\Core\Config::getInstance()->fromArray($config);
+        $catmdl = new HWasly\Firewall\Category();
         if ($catmdl->sync()) {
             $catmdl->serializeToConfig();
-            $config = OPNsense\Core\Config::getInstance()->toArray(listtags());
+            $config = HWasly\Core\Config::getInstance()->toArray(listtags());
         }
         write_config();
         mark_subsystem_dirty('natconf');
@@ -176,7 +176,7 @@ include("head.inc");
 <body>
   <script src="<?= cache_safe('/ui/js/tokenize2.js') ?>"></script>
   <link rel="stylesheet" type="text/css" href="<?= cache_safe(get_themed_filename('/css/tokenize2.css')) ?>">
-  <script src="<?= cache_safe('/ui/js/opnsense_ui.js') ?>"></script>
+  <script src="<?= cache_safe('/ui/js/hwasly_ui.js') ?>"></script>
   <script>
   $( document ).ready(function() {
 
@@ -248,7 +248,7 @@ include("head.inc");
           <div class="content-box">
             <form method="post" name="iform" id="iform">
               <div class="table-responsive">
-                <table class="table table-striped opnsense_standard_table_form">
+                <table class="table table-striped hwasly_standard_table_form">
                   <tr>
                     <td style="width:22%"><strong><?= gettext('Edit NAT 1:1 entry') ?></strong></td>
                     <td style="width:78%;text-align:right">
@@ -422,7 +422,7 @@ include("head.inc");
                     <td>
                       <select name="category[]" id="category" multiple="multiple" class="tokenize" data-allownew="true" data-width="334px" data-live-search="true">
   <?php
-                      foreach ((new OPNsense\Firewall\Category())->iterateCategories() as $category):
+                      foreach ((new HWasly\Firewall\Category())->iterateCategories() as $category):
                         $catname = htmlspecialchars($category['name'], ENT_QUOTES | ENT_HTML401);?>
                         <option value="<?=$catname;?>" <?=!empty($pconfig['category']) && in_array($catname, $pconfig['category']) ? 'selected="selected"' : '';?> ><?=$catname;?></option>
   <?php

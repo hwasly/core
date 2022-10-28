@@ -30,7 +30,7 @@
 require_once("guiconfig.inc");
 require_once("system.inc");
 
-$serviceproviders_xml = "/usr/local/opnsense/contrib/mobile-broadband-provider-info/serviceproviders.xml";
+$serviceproviders_xml = "/usr/local/hwasly/contrib/mobile-broadband-provider-info/serviceproviders.xml";
 $serviceproviders_contents = file_get_contents($serviceproviders_xml);
 $serviceproviders = simplexml_load_string($serviceproviders_contents);
 

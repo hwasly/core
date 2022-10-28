@@ -453,7 +453,7 @@ function filter_configure_sync($verbose = false, $load_aliases = true)
     service_log('.', $verbose);
 
     if ($load_aliases) {
-        configd_run('template reload OPNsense/Filter');
+        configd_run('template reload HWasly/Filter');
         configd_run('filter refresh_aliases', true);
     }
 
@@ -589,7 +589,7 @@ function filter_generate_aliases()
     $aliases .= "table <virusprot>\n";
 
     $aliases .= "\n# User Aliases\n";
-    $aliasObject = new \OPNsense\Firewall\Alias();
+    $aliasObject = new \HWasly\Firewall\Alias();
     // list of registered aliases for faster is_alias() lookup
     $all_aliases = [];
     foreach ($aliasObject->aliasIterator() as $aliased) {

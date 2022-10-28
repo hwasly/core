@@ -32,14 +32,14 @@ function core_services()
 
     $services = array();
 
-    if (isset($config['OPNsense']['captiveportal']['zones']['zone'])) {
+    if (isset($config['HWasly']['captiveportal']['zones']['zone'])) {
         $enabled = false;
-        if (!empty($config['OPNsense']['captiveportal']['zones']['zone']['enabled'])) {
+        if (!empty($config['HWasly']['captiveportal']['zones']['zone']['enabled'])) {
             // single zone and enabled
             $enabled = true;
         } else {
             // possible more zones, traverse items
-            foreach ($config['OPNsense']['captiveportal']['zones']['zone'] as $zone) {
+            foreach ($config['HWasly']['captiveportal']['zones']['zone'] as $zone) {
                 if (!empty($zone['enabled'])) {
                     $enabled = true;
                 }
@@ -336,7 +336,7 @@ function core_cron()
         );
     }
 
-    foreach ((new OPNsense\Backup\BackupFactory())->listProviders() as $classname => $provider) {
+    foreach ((new HWasly\Backup\BackupFactory())->listProviders() as $classname => $provider) {
         if ($provider['handle']->isEnabled()) {
             $jobs[]['autocron'] = array('/usr/local/sbin/configctl -d system remote backup', 0, 1);
             break;
@@ -447,13 +447,13 @@ function core_xmlrpc_sync()
     );
     $result[] = array(
         'description' => gettext('Syslog'),
-        'section' => 'syslog,OPNsense.Syslog',
+        'section' => 'syslog,HWasly.Syslog',
         'id' => 'syslog',
         'services' => ["syslogd"],
     );
     $result[] = array(
         'description' => gettext('Cron'),
-        'section' => 'OPNsense.cron',
+        'section' => 'HWasly.cron',
         'id' => 'cron',
         'services' => ["cron"],
     );

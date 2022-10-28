@@ -33,7 +33,7 @@ require_once("guiconfig.inc");
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     $pconfig['backupcount'] = isset($config['system']['backupcount']) ? $config['system']['backupcount'] : null;
 
-    $cnf = OPNsense\Core\Config::getInstance();
+    $cnf = HWasly\Core\Config::getInstance();
     $confvers = $cnf->getBackups(true);
     array_shift($confvers);
 
@@ -108,7 +108,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         }
     }
 
-    $cnf = OPNsense\Core\Config::getInstance();
+    $cnf = HWasly\Core\Config::getInstance();
     $confvers = $cnf->getBackups(true);
     array_shift($confvers);
 

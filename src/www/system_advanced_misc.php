@@ -252,7 +252,7 @@ include("head.inc");
       <section class="col-xs-12">
         <form method="post" name="iform" id="iform">
           <div class="content-box tab-content table-responsive __mb">
-            <table class="table table-striped opnsense_standard_table_form">
+            <table class="table table-striped hwasly_standard_table_form">
               <tr>
                 <td style="width:22%"><strong><?= gettext('Cryptography settings') ?></strong></td>
                 <td style="width:78%; text-align:right">
@@ -285,7 +285,7 @@ include("head.inc");
             </table>
           </div>
           <div class="content-box tab-content table-responsive __mb">
-            <table class="table table-striped opnsense_standard_table_form">
+            <table class="table table-striped hwasly_standard_table_form">
               <tr>
                 <td style="width:22%"><strong><?= gettext('Thermal Sensors') ?></strong></td>
                 <td style="width:78%"></td>
@@ -314,7 +314,7 @@ include("head.inc");
             </table>
           </div>
           <div class="content-box tab-content table-responsive __mb">
-            <table class="table table-striped opnsense_standard_table_form">
+            <table class="table table-striped hwasly_standard_table_form">
               <tr>
                 <td style="width:22%"><strong><?= gettext('Periodic Backups') ?></strong></td>
                 <td style="width:78%"></td>
@@ -391,7 +391,7 @@ include("head.inc");
             </table>
           </div>
           <div class="content-box tab-content table-responsive __mb">
-            <table class="table table-striped opnsense_standard_table_form">
+            <table class="table table-striped hwasly_standard_table_form">
               <tr>
                 <td style="width:22%"><strong><?= gettext('Power Savings') ?></strong></td>
                 <td style="width:78%"></td>
@@ -479,7 +479,7 @@ include("head.inc");
             </table>
           </div>
           <div class="content-box tab-content table-responsive __mb">
-            <table class="table table-striped opnsense_standard_table_form">
+            <table class="table table-striped hwasly_standard_table_form">
               <tr>
                 <td colspan="2"><strong><?= gettext('Disk / Memory Settings (reboot to apply changes)') ?></strong></td>
               </tr>
@@ -532,7 +532,7 @@ include("head.inc");
             </table>
           </div>
           <div class="content-box tab-content table-responsive __mb">
-            <table class="table table-striped opnsense_standard_table_form">
+            <table class="table table-striped hwasly_standard_table_form">
                 <tr>
                     <td style="width:22%"><strong><?= gettext('System Sounds') ?></strong></td>
                     <td style="width:78%"></td>
@@ -550,7 +550,7 @@ include("head.inc");
             </table>
           </div>
           <div class="content-box tab-content table-responsive">
-            <table class="table table-striped opnsense_standard_table_form">
+            <table class="table table-striped hwasly_standard_table_form">
               <tr>
                 <td style="width:22%"></td>
                 <td style="width:78%">

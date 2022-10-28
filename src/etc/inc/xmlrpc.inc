@@ -30,7 +30,7 @@ require_once('IXR/IXR_Library.php');
 
 class XMLRPCServer
 {
-    private $prefix = 'opnsense';
+    private $prefix = 'hwasly';
 
     private $xmlrpc_callbacks = array();
 

@@ -24,7 +24,7 @@
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
 
-# script to glue standard ipfw rc scripting to OPNsense ruleset
+# script to glue standard ipfw rc scripting to HWasly ruleset
 # see auto generated file /etc/rc.conf.d/ipfw for details
 
 # sysctl settings
@@ -34,7 +34,7 @@ sysctl net.inet.ip.dummynet.hash_size=256 > /dev/null
 # reload ipfw rules
 ipfw -q /usr/local/etc/ipfw.rules
 # load tables
-/usr/local/opnsense/scripts/shaper/update_tables
+/usr/local/hwasly/scripts/shaper/update_tables
 
 if [ ! -f /tmp/ipfw.firstload ]; then
 	# we need to make sure ipfw is loaded as last

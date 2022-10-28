@@ -1259,7 +1259,7 @@ $( document ).ready(function() {
             <input name="id" type="hidden" value="<?=$id;?>" />
 <?php
             endif;?>
-            <table class="table table-striped opnsense_standard_table_form">
+            <table class="table table-striped hwasly_standard_table_form">
               <tr>
                 <td style="width:22%"></td>
                 <td  style="width:78%; text-align:right">
@@ -1289,7 +1289,7 @@ $( document ).ready(function() {
               </tr>
             </table>
             <!-- existing cert -->
-            <table id="import" class="table table-striped opnsense_standard_table_form">
+            <table id="import" class="table table-striped hwasly_standard_table_form">
               <thead>
                 <tr>
                   <th colspan="2"><?=gettext("Import Certificate");?></th>
@@ -1317,7 +1317,7 @@ $( document ).ready(function() {
               </tbody>
             </table>
             <!-- sign_cert_csr -->
-            <table id="sign_cert_csr" class="table table-striped opnsense_standard_table_form">
+            <table id="sign_cert_csr" class="table table-striped hwasly_standard_table_form">
               <thead>
                 <tr>
                   <th colspan="2"><?=gettext("Sign CSR");?></th>
@@ -1384,7 +1384,7 @@ $( document ).ready(function() {
               </tbody>
             </table>
             <div id="x509_extension_step_sign_cert_csr" class="hidden">
-              <table class="table table-striped opnsense_standard_table_form">
+              <table class="table table-striped hwasly_standard_table_form">
                 <thead>
                   <tr>
                     <th colspan="2"><?=gettext("Subject of the certificate");?></th>
@@ -1495,7 +1495,7 @@ $( document ).ready(function() {
               </table>
             </div>
             <!-- internal cert -->
-            <table id="internal" class="table table-striped opnsense_standard_table_form">
+            <table id="internal" class="table table-striped hwasly_standard_table_form">
               <thead>
                 <tr>
                   <th colspan="2"><?=gettext("Internal Certificate");?></th>
@@ -1749,7 +1749,7 @@ $( document ).ready(function() {
               </tbody>
             </table>
             <!-- external cert -->
-            <table id="external" class="table table-striped opnsense_standard_table_form">
+            <table id="external" class="table table-striped hwasly_standard_table_form">
               <thead>
                 <tr>
                   <td colspan="2"><?=gettext("External Signing Request");?></td>
@@ -1996,7 +1996,7 @@ $( document ).ready(function() {
 <?php
           elseif ($act == "download_private_key"):?>
 
-          <table class="table table-striped opnsense_standard_table_form">
+          <table class="table table-striped hwasly_standard_table_form">
             <thead>
               <tr>
                 <th colspan="2"><?= gettext('Certificate has been issued.'); ?></th>

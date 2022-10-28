@@ -1,7 +1,7 @@
 <?php
 
 /*
- * Copyright (C) 2018-2021 Franco Fichtner <franco@opnsense.org>
+ * Copyright (C) 2018-2021 Franco Fichtner <franco@hwasly.org>
  * Copyright (C) 2018 Fabian Franz
  * Copyright (C) 2014-2016 Deciso B.V.
  * Copyright (C) 2014 Warren Baker <warren@decoy.co.za>
@@ -191,7 +191,7 @@ include_once("head.inc");
           <section class="col-xs-12">
             <div class="tab-content content-box col-xs-12">
                 <div class="table-responsive">
-                  <table class="table table-striped opnsense_standard_table_form">
+                  <table class="table table-striped hwasly_standard_table_form">
                     <tbody>
                       <tr>
                         <td style="width:22%"><strong><?= gettext('General options') ?></strong></td>

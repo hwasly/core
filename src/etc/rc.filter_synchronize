@@ -77,7 +77,7 @@ function carp_check_version($url, $username, $password, $debug = false)
     $client = new SimpleXMLRPC_Client($url, 240);
     $client->debug = $debug;
     $client->setCredentials($username, $password);
-    if ($client->query('opnsense.firmware_version')) {
+    if ($client->query('hwasly.firmware_version')) {
         $remote_version = $client->getResponse();
     } else {
         // propagate error to log
@@ -89,7 +89,7 @@ function carp_check_version($url, $username, $password, $debug = false)
     }
 
     if (!is_array($remote_version) && trim($remote_version) == "Authentication failed") {
-        $error = "An authentication failure occurred while trying to access {$url} (opnsense.firmware_version).";
+        $error = "An authentication failure occurred while trying to access {$url} (hwasly.firmware_version).";
         log_error($error);
         return false;
     }
@@ -204,7 +204,7 @@ function carp_sync_xml($url, $username, $password, $sections, $debug)
     $client = new SimpleXMLRPC_Client($url,240);
     $client->debug = $debug;
     $client->setCredentials($username, $password);
-    if ($client->query('opnsense.restore_config_section', $transport_data)) {
+    if ($client->query('hwasly.restore_config_section', $transport_data)) {
         $response = $client->getResponse();
     } else {
         // propagate error to log
@@ -216,7 +216,7 @@ function carp_sync_xml($url, $username, $password, $sections, $debug)
     }
 
     if (!is_array($response) && trim($response) == "Authentication failed") {
-        $error = "An authentication failure occurred while trying to access {$url} (opnsense.restore_config_section).";
+        $error = "An authentication failure occurred while trying to access {$url} (hwasly.restore_config_section).";
         log_error($error);
         exit;
     }
@@ -306,7 +306,7 @@ if (!empty($config['hasync'])) {
     $client = new SimpleXMLRPC_Client($synchronizeto, 240);
     $client->debug = $enable_debug;
     $client->setCredentials($username, $hasync['password']);
-    if ($client->query("opnsense.filter_configure")) {
+    if ($client->query("hwasly.filter_configure")) {
         $response = $client->getResponse();
     } else {
         // propagate error to log
@@ -324,10 +324,10 @@ if (!empty($config['hasync'])) {
     }
 
     if ($restart_services) {
-        $client->query('opnsense.configd_reload_all_templates', []);
-        if ($client->query('opnsense.list_services', [])) {
+        $client->query('hwasly.configd_reload_all_templates', []);
+        if ($client->query('hwasly.list_services', [])) {
             foreach ($client->getResponse() as $service) {
-                $client->query('opnsense.restart_service', [
+                $client->query('hwasly.restart_service', [
                     "service" => $service['name'],
                     "id" => isset($service['id']) ? $service['name'] : ""
                 ]);

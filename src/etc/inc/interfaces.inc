@@ -1,7 +1,7 @@
 <?php
 
 /*
- * Copyright (C) 2015-2022 Franco Fichtner <franco@opnsense.org>
+ * Copyright (C) 2015-2022 Franco Fichtner <franco@hwasly.org>
  * Copyright (C) 2004-2008 Scott Ullrich <sullrich@gmail.com>
  * Copyright (C) 2008-2009 Ermal Luçi
  * Copyright (C) 2005 Espen Johansen
@@ -569,7 +569,7 @@ function _interfaces_gre_configure($gre)
         $gre['tunnel-remote-addr'],
     ]);
 
-    $gateways = new \OPNsense\Routing\Gateways(legacy_interfaces_details());
+    $gateways = new \HWasly\Routing\Gateways(legacy_interfaces_details());
 
     foreach (array_keys(get_configured_interface_with_descr()) as $ifname) {
         if ($config['interfaces'][$ifname]['if'] == $gre['greif']) {
@@ -601,7 +601,7 @@ function _interfaces_gif_configure($gif)
 {
     global $config;
 
-    $gateways = new \OPNsense\Routing\Gateways(legacy_interfaces_details());
+    $gateways = new \HWasly\Routing\Gateways(legacy_interfaces_details());
 
     if (is_ipaddrv4($gif['remote-addr'])) {
         $realifip = get_interface_ip(!empty($gif['ipaddr']) ? $gif['ipaddr'] : $gif['if']);
@@ -952,7 +952,7 @@ function interface_ppps_configure($interface)
     }
 
     // mpd5 modem chat script expected in the same directory as the mpd_xxx.conf files
-    @copy('/usr/local/opnsense/scripts/interfaces/mpd.script', '/var/etc/mpd.script');
+    @copy('/usr/local/hwasly/scripts/interfaces/mpd.script', '/var/etc/mpd.script');
 
     if (isset($config['ppps']['ppp'])) {
         foreach ($config['ppps']['ppp'] as $pppid => $ppp) {
@@ -1076,8 +1076,8 @@ EOD;
         $mpdconf .= "  set iface enable tcpmssfix\n";
     }
 
-    $mpdconf .= "  set iface up-script /usr/local/opnsense/scripts/interfaces/ppp-linkup.sh\n";
-    $mpdconf .= "  set iface down-script /usr/local/opnsense/scripts/interfaces/ppp-linkdown.sh\n";
+    $mpdconf .= "  set iface up-script /usr/local/hwasly/scripts/interfaces/ppp-linkup.sh\n";
+    $mpdconf .= "  set iface down-script /usr/local/hwasly/scripts/interfaces/ppp-linkdown.sh\n";
     if ($ppp['type'] == "ppp") {
         if (is_ipaddr($ppp['localip'])) {
             $localip = $ppp['localip'];
@@ -2574,7 +2574,7 @@ function interface_6rd_configure($interface, $wancfg, $update = false)
     mwexecf('/sbin/ifconfig %s stfv4net %s/%s', array($stfiface, $ip4address, $wancfg['prefix-6rd-v4plen']));
     mwexecf('/usr/local/sbin/ifctl -i %s -6rd -a %s', [$stfiface, $rd6brgw]);
 
-    $gateways = new \OPNsense\Routing\Gateways(legacy_interfaces_details());
+    $gateways = new \HWasly\Routing\Gateways(legacy_interfaces_details());
     $ip4gateway = $gateways->getInterfaceGateway($interface, "inet");
     if (is_ipaddrv4($ip4gateway)) {
         system_host_route($wancfg['gateway-6rd'], $ip4gateway);
@@ -2662,7 +2662,7 @@ function interface_6to4_configure($interface, $wancfg, $update = false)
     mwexecf('/sbin/ifconfig %s inet6 %s prefixlen 16', array($stfiface, $stflan));
     mwexecf('/usr/local/sbin/ifctl -i %s -6rd -a %s', [$stfiface, $stfbrgw]);
 
-    $gateways = new \OPNsense\Routing\Gateways(legacy_interfaces_details());
+    $gateways = new \HWasly\Routing\Gateways(legacy_interfaces_details());
     $ip4gateway = $gateways->getInterfaceGateway($interface, "inet");
     if (is_ipaddrv4($ip4gateway)) {
         system_host_route('192.88.99.1', $ip4gateway);
@@ -2698,7 +2698,7 @@ function interface_dhcpv6_configure($interface, $wancfg)
             '/var/run/rtsold.pid',
             '/var/etc/rtsold_script.sh',
             '/var/etc/rtsold_script.sh',
-            '/usr/local/opnsense/scripts/interfaces/rtsold_resolvconf.sh',
+            '/usr/local/hwasly/scripts/interfaces/rtsold_resolvconf.sh',
         )
     );
 
@@ -3119,7 +3119,7 @@ interface "{$wanif}" {
   select-timeout 0;
   initial-interval 1;
   {$dhclientconf_hostname}
-  script "/usr/local/opnsense/scripts/interfaces/dhclient-script";
+  script "/usr/local/hwasly/scripts/interfaces/dhclient-script";
 
 EOD;
 
@@ -3230,7 +3230,7 @@ function DHCP_Config_File_Advanced($interface, $wancfg, $wanif)
     $dhclientconf .= "{$request_options}";
     $dhclientconf .= "{$required_options}";
     $dhclientconf .= "{$option_modifiers}";
-    $dhclientconf .= "\n\tscript \"/usr/local/opnsense/scripts/interfaces/dhclient-script\";\n";
+    $dhclientconf .= "\n\tscript \"/usr/local/hwasly/scripts/interfaces/dhclient-script\";\n";
     if (empty($wancfg['dhcphonourmtu'])) {
         $dhclientconf .= "\tsupersede interface-mtu 0;\n";
     }
@@ -3797,7 +3797,7 @@ function get_interfaces_info($include_unlinked = false)
 
     $all_intf_details = legacy_interfaces_details();
     $all_intf_stats = legacy_interface_stats();
-    $gateways = new \OPNsense\Routing\Gateways($all_intf_details);
+    $gateways = new \HWasly\Routing\Gateways($all_intf_details);
     $ifup = legacy_interface_listget('up');
     $result = [];
     $interfaces = legacy_config_get_interfaces(['virtual' => false]);
@@ -3939,7 +3939,7 @@ function get_interfaces_info($include_unlinked = false)
         }
 
         if (file_exists("/var/run/{$link_type}_{$ifdescr}.pid")) {
-            $sec = intval(trim(shell_exec('/usr/local/opnsense/scripts/interfaces/ppp-uptime.sh ' . escapeshellarg($ifinfo['if']))));
+            $sec = intval(trim(shell_exec('/usr/local/hwasly/scripts/interfaces/ppp-uptime.sh ' . escapeshellarg($ifinfo['if']))));
             if ($sec) {
                 $ifinfo['ppp_uptime'] = convert_seconds_to_hms($sec);
             }

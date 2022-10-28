@@ -1,7 +1,7 @@
-OPNsense GUI and system management
+HWasly GUI and system management
 ==================================
 
-The OPNsense project invites developers to start contributing to
+The HWasly project invites developers to start contributing to
 the code base.  For your own purposes or – even better – to join us in
 creating the best open source firewall available.
 
@@ -9,7 +9,7 @@ The build process has been designed to make it easy for anyone to
 build and write code.  The main outline of the new codebase is
 available at:
 
-https://docs.opnsense.org/development/architecture.html
+https://docs.hwasly.org/development/architecture.html
 
 Our aim is to gradually evolve to a new codebase instead of using a
 big bang approach into something new.
@@ -17,12 +17,12 @@ big bang approach into something new.
 Build tools
 ===========
 
-To create working software like OPNsense you need the sources and the
-tools to build it.  The build tools for OPNsense are freely available.
+To create working software like HWasly you need the sources and the
+tools to build it.  The build tools for HWasly are freely available.
 
-Notes on how to build OPNsense can be found in the tools repository:
+Notes on how to build HWasly can be found in the tools repository:
 
-https://github.com/opnsense/tools
+https://github.com/hwasly/tools
 
 Contribute
 ==========
@@ -34,12 +34,12 @@ directly via GitHub.  Any help is always very welcome!
 License
 =======
 
-OPNsense is and will always be available under the 2-Clause BSD license:
+HWasly is and will always be available under the 2-Clause BSD license:
 
 https://opensource.org/licenses/BSD-2-Clause
 
 Every contribution made to the project must be licensed under the
-same conditions in order to keep OPNsense truly free and accessible
+same conditions in order to keep HWasly truly free and accessible
 for everybody.
 
 Makefile targets

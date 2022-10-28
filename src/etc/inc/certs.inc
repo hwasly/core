@@ -161,7 +161,7 @@ function ca_chain(&$cert)
 function ca_create(&$ca, $keylen_curve, $lifetime, $dn, $digest_alg)
 {
     $args = array(
-        'config' => '/usr/local/etc/ssl/opnsense.cnf',
+        'config' => '/usr/local/etc/ssl/hwasly.cnf',
         'x509_extensions' => 'v3_ca',
         'digest_alg' => $digest_alg,
         'encrypt_key' => false
@@ -701,13 +701,13 @@ function create_temp_openssl_config(&$extns)
     // define temp filename to use for openssl.cnf and add extensions values to it
     $configFilename = tempnam(sys_get_temp_dir(), 'ssl');
 
-    $template = file_get_contents('/usr/local/etc/ssl/opnsense.cnf');
+    $template = file_get_contents('/usr/local/etc/ssl/hwasly.cnf');
 
     foreach (['subjectAltName', 'keyUsage', 'extendedKeyUsage', 'basicConstraints'] as $extnTag) {
         if (isset($extns[$extnTag])) {
             $template_extn = $extnTag . ' = ' . str_replace(array("\r", "\n"), '', $extns[$extnTag]);
             // Overwrite the placeholders for this property
-            $template = str_replace('###OPNsense:' . $extnTag . '###', $template_extn, $template);
+            $template = str_replace('###HWasly:' . $extnTag . '###', $template_extn, $template);
         }
     }
     file_put_contents($configFilename, $template);

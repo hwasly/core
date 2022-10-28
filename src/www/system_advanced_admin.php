@@ -1,7 +1,7 @@
 <?php
 
 /*
- * Copyright (C) 2017-2019 Franco Fichtner <franco@opnsense.org>
+ * Copyright (C) 2017-2019 Franco Fichtner <franco@hwasly.org>
  * Copyright (C) 2014-2015 Deciso B.V.
  * Copyright (C) 2005-2010 Scott Ullrich <sullrich@gmail.com>
  * Copyright (C) 2008 Shrew Soft Inc. <mgrooms@shrew.net>
@@ -510,7 +510,7 @@ $(document).ready(function() {
       <section class="col-xs-12">
         <form method="post" name="iform" id="iform">
           <div class="content-box tab-content table-responsive __mb">
-            <table class="table table-striped opnsense_standard_table_form">
+            <table class="table table-striped hwasly_standard_table_form">
               <tr>
                 <td style="width:22%"><strong><?=gettext('Web GUI');?></strong></td>
                 <td style="width:78%; text-align:right">
@@ -717,7 +717,7 @@ $(document).ready(function() {
             </table>
           </div>
           <div class="content-box tab-content table-responsive __mb">
-            <table class="table table-striped opnsense_standard_table_form">
+            <table class="table table-striped hwasly_standard_table_form">
               <tr>
                 <td style="width:22%"><strong><?= gettext('Secure Shell') ?></strong></td>
                 <td style="width:78%"></td>
@@ -874,7 +874,7 @@ $(document).ready(function() {
             </table>
           </div>
           <div class="content-box tab-content table-responsive __mb">
-            <table class="table table-striped opnsense_standard_table_form">
+            <table class="table table-striped hwasly_standard_table_form">
               <tr>
                 <td style="width:22%"><strong><?= gettext('Console') ?></strong></td>
                 <td style="width:78%"></td>
@@ -949,7 +949,7 @@ $(document).ready(function() {
             </table>
           </div>
           <div class="content-box tab-content table-responsive __mb">
-            <table class="table table-striped opnsense_standard_table_form">
+            <table class="table table-striped hwasly_standard_table_form">
               <tr>
                 <td style="width:22%"><strong><?= gettext('Shell') ?></strong></td>
                 <td style="width:78%"></td>
@@ -968,7 +968,7 @@ $(document).ready(function() {
             </table>
           </div>
           <div class="content-box tab-content table-responsive __mb">
-            <table class="table table-striped opnsense_standard_table_form">
+            <table class="table table-striped hwasly_standard_table_form">
               <tr>
                 <td style="width:22%"><strong><?= gettext('Authentication') ?></strong></td>
                 <td style="width:78%"></td>
@@ -1045,7 +1045,7 @@ $(document).ready(function() {
             </table>
           </div>
           <div class="content-box tab-content table-responsive __mb">
-            <table class="table table-striped opnsense_standard_table_form">
+            <table class="table table-striped hwasly_standard_table_form">
               <tr>
                 <td style="width:22%"><strong><?= gettext('Deployment') ?></strong></td>
                 <td style="width:78%"></td>
@@ -1062,14 +1062,14 @@ $(document).ready(function() {
                     </option>
                   </select>
                   <div class="hidden" data-for="help_for_deployment">
-                    <?=gettext("Set the deployment type of this OPNsense instance.");?></br>
+                    <?=gettext("Set the deployment type of this HWasly instance.");?></br>
                   </div>
                 </td>
               </tr>
             </table>
           </div>
           <div class="content-box tab-content table-responsive">
-            <table class="table table-striped opnsense_standard_table_form">
+            <table class="table table-striped hwasly_standard_table_form">
               <tr>
                 <td style="width:22%"></td>
                 <td style="width:78%"><input name="Submit" type="submit" class="btn btn-primary" value="<?= html_safe(gettext('Save')) ?>" /></td>

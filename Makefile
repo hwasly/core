@@ -1,4 +1,4 @@
-# Copyright (c) 2014-2022 Franco Fichtner <franco@opnsense.org>
+# Copyright (c) 2014-2022 Franco Fichtner <franco@hwasly.org>
 #
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions
@@ -30,7 +30,7 @@ all:
 
 CORE_ABI?=	22.7
 CORE_MESSAGE?=	Carry on my wayward son
-CORE_NAME?=	opnsense-devel
+CORE_NAME?=	hwasly-devel
 CORE_NICKNAME?=	Not Yet
 CORE_TYPE?=	development
 
@@ -116,11 +116,11 @@ CORE_REPOSITORY?=	unsupported/${CORE_FLAVOUR:tl}
 .endif
 
 CORE_COMMENT?=		${CORE_PRODUCT} ${CORE_TYPE} release
-CORE_MAINTAINER?=	project@opnsense.org
-CORE_ORIGIN?=		opnsense/${CORE_NAME}
-CORE_PACKAGESITE?=	https://pkg.opnsense.org
-CORE_PRODUCT?=		OPNsense
-CORE_WWW?=		https://opnsense.org/
+CORE_MAINTAINER?=	project@hwasly.org
+CORE_ORIGIN?=		hwasly/${CORE_NAME}
+CORE_PACKAGESITE?=	https://pkg.hwasly.org
+CORE_PRODUCT?=		HWasly
+CORE_WWW?=		https://hwasly.org/
 
 CORE_COPYRIGHT_HOLDER?=	Deciso B.V.
 CORE_COPYRIGHT_WWW?=	https://www.deciso.com/
@@ -150,10 +150,10 @@ CORE_DEPENDS?=		ca_root_nss \
 			ntp \
 			openssh-portable \
 			openvpn \
-			opnsense-installer \
-			opnsense-lang \
-			opnsense-update \
-			pam_opnsense \
+			hwasly-installer \
+			hwasly-lang \
+			hwasly-update \
+			pam_hwasly \
 			pftop \
 			php${CORE_PHP}-ctype \
 			php${CORE_PHP}-curl \
@@ -203,8 +203,8 @@ debug:
 mount:
 	@if [ ! -f ${WRKDIR}/.mount_done ]; then \
 	    echo -n "Enabling core.git live mount..."; \
-	    sed ${SED_REPLACE} ${.CURDIR}/src/opnsense/version/core.in > \
-	        ${.CURDIR}/src/opnsense/version/core; \
+	    sed ${SED_REPLACE} ${.CURDIR}/src/hwasly/version/core.in > \
+	        ${.CURDIR}/src/hwasly/version/core; \
 	    mount_unionfs ${.CURDIR}/src ${LOCALBASE}; \
 	    touch ${WRKDIR}/.mount_done; \
 	    echo "done"; \
@@ -263,9 +263,9 @@ scripts:
 install:
 	@${CORE_MAKE} -C ${.CURDIR}/contrib install DESTDIR=${DESTDIR}
 	@${CORE_MAKE} -C ${.CURDIR}/src install DESTDIR=${DESTDIR} ${MAKE_REPLACE}
-.if exists(${LOCALBASE}/opnsense/www/index.php)
+.if exists(${LOCALBASE}/hwasly/www/index.php)
 	# try to update the current system if it looks like one
-	@touch ${LOCALBASE}/opnsense/www/index.php
+	@touch ${LOCALBASE}/hwasly/www/index.php
 .endif
 
 collect:
@@ -322,14 +322,14 @@ package: plist-check package-check clean-wrksrc
 	@${CORE_MAKE} DESTDIR=${WRKSRC} install
 	@echo " done"
 	@echo ">>> Generated version info for ${CORE_NAME}-${CORE_PKGVERSION}:"
-	@cat ${WRKSRC}/usr/local/opnsense/version/core
+	@cat ${WRKSRC}/usr/local/hwasly/version/core
 	@echo ">>> Packaging files for ${CORE_NAME}-${CORE_PKGVERSION}:"
 	@PORTSDIR=${.CURDIR} ${PKG} create ${PKG_FORMAT} -v -m ${WRKSRC} \
 	    -r ${WRKSRC} -p ${WRKSRC}/plist -o ${PKGDIR}
 
 upgrade-check:
 	@if ! ${PKG} info ${CORE_NAME} > /dev/null; then \
-		echo ">>> Cannot find package.  Please run 'opnsense-update -t ${CORE_NAME}'" >&2; \
+		echo ">>> Cannot find package.  Please run 'hwasly-update -t ${CORE_NAME}'" >&2; \
 		exit 1; \
 	fi
 	@if [ "$$(${VERSIONBIN} -vH)" = "${CORE_PKGVERSION} ${CORE_HASH}" ]; then \
@@ -350,7 +350,7 @@ lint-xml:
 	@find ${.CURDIR}/src ${.CURDIR}/Scripts \
 	    -name "*.xml*" -type f -print0 | xargs -0 -n1 xmllint --noout
 
-SCRIPTDIRS!=	find ${.CURDIR}/src/opnsense/scripts -type d -depth 1
+SCRIPTDIRS!=	find ${.CURDIR}/src/hwasly/scripts -type d -depth 1
 
 lint-exec:
 .for DIR in ${.CURDIR}/src/etc/rc.d ${.CURDIR}/src/etc/rc.syshook.d ${SCRIPTDIRS}
@@ -384,7 +384,7 @@ sweep:
 	find ${.CURDIR} -type f -depth 1 -print0 | \
 	    xargs -0 -n1 ${.CURDIR}/Scripts/cleanfile
 
-STYLEDIRS?=	src/etc/inc src/opnsense
+STYLEDIRS?=	src/etc/inc src/hwasly
 
 style-python: debug
 	@pycodestyle-${CORE_PYTHON_DOT} --ignore=E501 ${.CURDIR}/src || true
@@ -485,14 +485,14 @@ push:
 	@git checkout ${CORE_DEVEL}
 
 migrate:
-	@src/opnsense/mvc/script/run_migrations.php
+	@src/hwasly/mvc/script/run_migrations.php
 
 test: debug
 	@if [ "$$(${VERSIONBIN} -v)" != "${CORE_PKGVERSION}" ]; then \
 		echo "Installed version does not match, expected ${CORE_PKGVERSION}"; \
 		exit 1; \
 	fi
-	@cd ${.CURDIR}/src/opnsense/mvc/tests && \
+	@cd ${.CURDIR}/src/hwasly/mvc/tests && \
 	    phpunit --configuration PHPunit.xml || true; \
 	    rm -f .phpunit.result.cache
 

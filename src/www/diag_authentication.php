@@ -52,7 +52,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             $authName = 'Local Database';
         }
 
-        $authFactory = new OPNsense\Auth\AuthenticationFactory();
+        $authFactory = new HWasly\Auth\AuthenticationFactory();
         $authenticator = $authFactory->get($authName);
         if ($authenticator->authenticate($_POST['username'], $_POST['password'])) {
             $savemsg = gettext("User") . ": " . $_POST['username'] . " " . gettext("authenticated successfully.");
@@ -98,7 +98,7 @@ include("head.inc");
         <section class="col-xs-12">
           <div class="content-box tab-content">
             <form id="iform" name="iform"  method="post">
-            <table class="table table-striped opnsense_standard_table_form">
+            <table class="table table-striped hwasly_standard_table_form">
               <tbody>
                 <tr>
                   <td style="width:22%"><?=gettext("Authentication Server"); ?></td>

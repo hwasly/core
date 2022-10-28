@@ -5,7 +5,7 @@
 ##
 ## This module will extract the client's "real" IP from the relevant
 ## header which is added by Squid or other proxies. It is useful for
-## logging the "real" IP of clients connecting to the OPNsense webgui
+## logging the "real" IP of clients connecting to the HWasly webgui
 ## behind reverse proxy servers
 ##
 ## Options: https://redmine.lighttpd.net/projects/1/wiki/Docs_ModExtForward

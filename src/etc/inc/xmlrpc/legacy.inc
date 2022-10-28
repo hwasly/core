@@ -105,9 +105,9 @@ function merge_config_attributes(&$cnf_source, &$cnf_dest)
 function firmware_version_xmlrpc()
 {
     return array(
-        'base' => array('version' => trim(shell_exec('opnsense-version -v base'))),
-        'firmware' => array('version' => trim(shell_exec('opnsense-version -v core'))),
-        'kernel' => array('version' => trim(shell_exec('opnsense-version -v kernel'))),
+        'base' => array('version' => trim(shell_exec('hwasly-version -v base'))),
+        'firmware' => array('version' => trim(shell_exec('hwasly-version -v core'))),
+        'kernel' => array('version' => trim(shell_exec('hwasly-version -v kernel'))),
     );
 }
 
@@ -138,7 +138,7 @@ function restore_config_section_xmlrpc($new_config)
 {
     global $config;
     // lock config write during merge
-    OPNsense\Core\Config::getInstance()->lock();
+    HWasly\Core\Config::getInstance()->lock();
 
     require_once("interfaces.inc");
     require_once("filter.inc");
